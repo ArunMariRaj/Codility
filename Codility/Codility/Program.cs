@@ -6,83 +6,107 @@ namespace Codility
 {
     public class CodilityPractices
     {
-       public static void Main()
-    {
-        PermCheckCodility();
-    }
-    /// <summary>
-    /// A non-empty zero-indexed array A consisting of N integers is given.
-    /// A permutation is a sequence containing each element from 1 to N once, and only once.
-    /// For example, array A such that:
-    ///  A[0] = 4
-    ///  A[1] = 1
-    ///  A[2] = 3
-    ///  A[3] = 2
-    /// is a permutation, but array A such that:
-    ///  A[0] = 4
-    ///  A[1] = 1
-    ///  A[2] = 3
-    /// is not a permutation, because value 2 is missing.
-    /// The goal is to check whether array A is a permutation.
-    /// Write a function:
-    /// class Solution { public int solution(int[] A); }
-    /// that, given a zero-indexed array A, returns 1 if array A is a permutation and 0 if it is not.
-    /// For example, given array A such that:
-    ///  A[0] = 4
-    ///  A[1] = 1
-    ///  A[2] = 3
-    ///  A[3] = 2
-    /// the function should return 1.
-    /// Given array A such that:
-    ///  A[0] = 4
-    ///  A[1] = 1
-    ///  A[2] = 3
-    /// the function should return 0.
-    /// Assume that:
-    /// N is an integer within the range[1..100, 000];
-    /// each element of array A is an integer within the range[1..1, 000, 000, 000].
-    /// Complexity:
-    /// expected worst-case time complexity is O(N);
-    /// expected worst-case space complexity is O(N), beyond input storage(not counting the storage required for input arguments).
-    /// Elements of input arrays can be modified.
-    /// </summary>
-    private static void PermCheckCodility()
-    {
-        int[] A = { 1,1 };
-        //  Solution
-        int max = A.Max();
-        int startIndex = 0;
-        int count = 0;
-        if (max > A.Length + 1)
+        public static void Main()
         {
-            Console.WriteLine("0");
-        }
-        else
-        {
-            int[] arr = new int[max];
-            while (startIndex < A.Length)
-            {
-                if (arr[A[startIndex] - 1] == 0)
-                {
-                    arr[A[startIndex] - 1]++;
-                    count++;
-                }
-                else if (arr[A[startIndex] - 1] == 1)
-                {
-                    Console.WriteLine("0");
-                    break;
-                }
-                startIndex++;
-            }
-            if (count == max)
-            {
-                Console.WriteLine("1");
-            }
-            else
-                Console.WriteLine("0");
+            int x = MissingInteger();
+            Console.WriteLine(x);
         }
 
-    }
+        /// <summary>
+        /// Missing Number to be updated
+        /// </summary>
+        private static int MissingInteger()
+        {
+            int[] A = {1,3,5,3,6,7 };
+            List<int> myList = A.Distinct().Where(i => i > 0).ToList();
+            myList.Sort();
+            for (int i = 0; i < myList.Count; i++)
+            {
+                if (myList[i] == i + 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    return ( i + 1);
+                }
+            }
+
+            return (myList.Count() + 1);
+        }
+        /// <summary>
+        /// A non-empty zero-indexed array A consisting of N integers is given.
+        /// A permutation is a sequence containing each element from 1 to N once, and only once.
+        /// For example, array A such that:
+        ///  A[0] = 4
+        ///  A[1] = 1
+        ///  A[2] = 3
+        ///  A[3] = 2
+        /// is a permutation, but array A such that:
+        ///  A[0] = 4
+        ///  A[1] = 1
+        ///  A[2] = 3
+        /// is not a permutation, because value 2 is missing.
+        /// The goal is to check whether array A is a permutation.
+        /// Write a function:
+        /// class Solution { public int solution(int[] A); }
+        /// that, given a zero-indexed array A, returns 1 if array A is a permutation and 0 if it is not.
+        /// For example, given array A such that:
+        ///  A[0] = 4
+        ///  A[1] = 1
+        ///  A[2] = 3
+        ///  A[3] = 2
+        /// the function should return 1.
+        /// Given array A such that:
+        ///  A[0] = 4
+        ///  A[1] = 1
+        ///  A[2] = 3
+        /// the function should return 0.
+        /// Assume that:
+        /// N is an integer within the range[1..100, 000];
+        /// each element of array A is an integer within the range[1..1, 000, 000, 000].
+        /// Complexity:
+        /// expected worst-case time complexity is O(N);
+        /// expected worst-case space complexity is O(N), beyond input storage(not counting the storage required for input arguments).
+        /// Elements of input arrays can be modified.
+        /// </summary>
+        private static void PermCheckCodility()
+        {
+            int[] A = { 1, 1 };
+            //  Solution
+            int max = A.Max();
+            int startIndex = 0;
+            int count = 0;
+            if (max > A.Length + 1)
+            {
+                Console.WriteLine("0");
+            }
+            else
+            {
+                int[] arr = new int[max];
+                while (startIndex < A.Length)
+                {
+                    if (arr[A[startIndex] - 1] == 0)
+                    {
+                        arr[A[startIndex] - 1]++;
+                        count++;
+                    }
+                    else if (arr[A[startIndex] - 1] == 1)
+                    {
+                        Console.WriteLine("0");
+                        break;
+                    }
+                    startIndex++;
+                }
+                if (count == max)
+                {
+                    Console.WriteLine("1");
+                }
+                else
+                    Console.WriteLine("0");
+            }
+
+        }
         /// <summary>
         /// A small frog wants to get to the other side of a river. The frog is initially located on one bank of the river (position 0) and wants to get to the opposite bank (position X+1). Leaves fall from a tree onto the surface of the river.
         /// You are given a zero-indexed array A consisting of N integers representing the falling leaves.A[K] represents the position where one leaf falls at time K, measured in seconds.
@@ -123,12 +147,12 @@ namespace Codility
         {
             int X = 5;
             int[] A = { 1, 3, 1, 4, 2, 3, 5, 4 };
-        
+
             //Actual Solution
             int[] arr = new int[X];
             int count = 0;
             int i = 0;
-            while(count<X && i<A.Length)
+            while (count < X && i < A.Length)
             {
                 if (arr[A[i] - 1] == 0)
                 {
@@ -137,7 +161,7 @@ namespace Codility
                 }
                 i++;
             }
-            if (count==X)
+            if (count == X)
             {
                 Console.WriteLine(--i);
             }
