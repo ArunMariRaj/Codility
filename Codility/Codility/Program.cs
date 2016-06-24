@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,26 +13,57 @@ namespace Codility
         }
 
         /// <summary>
-        /// Missing Number to be updated
+        /// Write a function:
+        /// class Solution { public int solution(int[] A); }
+        /// that, given a non-empty zero-indexed array A of N integers, returns the minimal positive integer(greater than 0) that does not occur in A.
+        /// For example, given:
+        /// A[0] = 1
+        /// A[1] = 3
+        /// A[2] = 6
+        /// A[3] = 4
+        /// A[4] = 1
+        /// A[5] = 2
+        /// the function should return 5.
+        /// Assume that:
+        /// N is an integer within the range[1..100, 000];
+        /// each element of array A is an integer within the range[−2, 147, 483, 648..2, 147, 483, 647].
+        /// Complexity:
+        /// expected worst-case time complexity is O(N);
+        /// expected worst-case space complexity is O(N), beyond input storage(not counting the storage required for input arguments).
+        /// Elements of input arrays can be modified.
         /// </summary>
         private static int MissingInteger()
         {
-            int[] A = {1,3,5,3,6,7 };
-            List<int> myList = A.Distinct().Where(i => i > 0).ToList();
-            myList.Sort();
-            for (int i = 0; i < myList.Count; i++)
-            {
-                if (myList[i] == i + 1)
-                {
-                    continue;
-                }
-                else
-                {
-                    return ( i + 1);
-                }
-            }
+            int[] A = {1,2,3,5,3,6,7 };
 
-            return (myList.Count() + 1);
+            List<int> list = A.Distinct().Where(x => x > 0).ToList();
+            list.Sort();
+            int index = 0;
+            while(index<list.Count)
+            {
+                if(list[index]!=index+1)
+                {
+                    return index+1;
+                }
+                index++;
+            }
+            return index + 1;
+
+            //List<int> myList = A.Distinct().Where(i => i > 0).ToList();
+            //myList.Sort();
+            //for (int i = 0; i < myList.Count; i++)
+            //{
+            //    if (myList[i] == i + 1)
+            //    {
+            //        continue;
+            //    }
+            //    else
+            //    {
+            //        return ( i + 1);
+            //    }
+            //}
+
+            //return (myList.Count() + 1);
         }
         /// <summary>
         /// A non-empty zero-indexed array A consisting of N integers is given.
